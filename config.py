@@ -1,5 +1,6 @@
 from environs import Env
 
+#  Берется с https://my.telegram.org/auth
 
 env = Env()
 env.read_env()
