@@ -1,5 +1,5 @@
 # Telegram spam bot
-Telegram userbot for sending to all your contacts on your behalf.
+Telegram userbot for sending to all your contacts on your behalf. The [pyrogram](https://github.com/pyrogram/pyrogram) module was used to write the bot.
 
 # Quick start
 
