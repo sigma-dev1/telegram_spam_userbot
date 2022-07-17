@@ -38,7 +38,7 @@ def check_image():
 @app.on_message(filters.command('start', prefixes='/') & filters.me)
 async def start_spamming(client, message):
     # Получение всех пользователей и чатов
-
+    spam_msg = spam_message()
     chats = []
     async for dialog in app.get_dialogs():
         chats.append({'dialog': dialog.chat.first_name or dialog.chat.title, 'id': dialog.chat.id})
@@ -47,14 +47,14 @@ async def start_spamming(client, message):
     if not check_image():
         print('[+] Start spam mailing without image')
         for chat in chats:
-            await app.send_message(chat['id'], spam_message())
+            await app.send_message(chat['id'], spam_msg)
             chat_name = chat['dialog']
             print(f'[+] {chat_name} received spam')
             await sleep(randint(1, 3))  # Кулдаун на отправку сообщений
     else:
         print('[+] Start spam mailing with image')
         for chat in chats:
-            await app.send_photo(chat['id'], "./spam_files/image.png", caption=spam_message())
+            await app.send_photo(chat['id'], "./spam_files/image.png", caption=spam_msg)
             chat_name = chat['dialog']
             print(f'[+] {chat_name} received spam')
             await sleep(randint(1, 3))  # Кулдаун на отправку сообщений
@@ -62,10 +62,11 @@ async def start_spamming(client, message):
 
 @app.on_message(filters.command('check', prefixes='/') & filters.me)
 async def check_msg(client, message):
+    spam_msg = spam_message()
     if not check_image():
-        await message.reply(spam_message())
+        await message.reply(spam_msg)
     else:
-        await message.reply_photo("./spam_files/image.png", caption=spam_message())
+        await message.reply_photo("./spam_files/image.png", caption=spam_msg)
 
 
 @app.on_message(filters.command('help', prefixes='/') & filters.me)
