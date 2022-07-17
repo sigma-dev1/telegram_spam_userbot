@@ -10,13 +10,18 @@ app = Client("my_account", api_id=api_id,
 
 
 def spam_message():
-    path = './spam_files/text.md'
-    if Path(path).is_file() and (Path(path).suffix == ".md" or Path(path).suffix == ".txt"):
-        hello = ''
+    if Path('./spam_files/text.md').is_file():
+        md_str = ''
         with open(r"./spam_files/text.md", "r") as file:
             for line in file:
-                hello += line
-        return hello
+                md_str += line
+        return md_str
+    elif Path('./spam_files/text.txt').is_file():
+        txt_str = ''
+        with open(r"./spam_files/text.txt", "r") as file:
+            for line in file:
+                txt_str += line
+        return txt_str
     else:
         print('[ERROR] Text file not found!')
 
