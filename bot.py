@@ -12,13 +12,13 @@ app = Client("my_account", api_id=api_id,
 def spam_message():
     if Path('./spam_files/text.md').is_file():
         md_str = ''
-        with open(r"./spam_files/text.md", "r") as file:
+        with open(r"./spam_files/text.md", "r", encoding="utf-8") as file:
             for line in file:
                 md_str += line
         return md_str
     elif Path('./spam_files/text.txt').is_file():
         txt_str = ''
-        with open(r"./spam_files/text.txt", "r") as file:
+        with open(r"./spam_files/text.txt", "r", encoding="utf-8") as file:
             for line in file:
                 txt_str += line
         return txt_str
